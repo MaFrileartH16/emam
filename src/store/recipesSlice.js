@@ -6,11 +6,11 @@ const recipesSlice = createSlice({
 	name: 'recipes',
 	initialState: {
 		recipes: [],
-		recipe: null, // For storing a single recipe's information
+		recipe: null,
 		status: 'idle',
 		page: 1,
 		hasMore: false,
-		error: null, // To store error messages
+		error: null,
 	},
 	reducers: {
 		resetRecipes: (state) => {
@@ -18,13 +18,9 @@ const recipesSlice = createSlice({
 			state.page = 1;
 			state.hasMore = false;
 		},
-		resetRecipe: (state) => {
-			state.recipe = null;
-		}
 	},
 	extraReducers: (builder) => {
 		builder
-			// Handling states for getRecipes
 			.addCase(getRecipes.pending, (state) => {
 				state.status = 'loading';
 				state.error = null;
@@ -39,7 +35,6 @@ const recipesSlice = createSlice({
 				state.status = 'failed';
 				state.error = action.error.message;
 			})
-			// Handling states for getRecipe
 			.addCase(getRecipe.pending, (state) => {
 				state.status = 'loading';
 				state.error = null;
@@ -55,5 +50,5 @@ const recipesSlice = createSlice({
 	},
 });
 
-export const {resetRecipes, resetRecipe} = recipesSlice.actions;
+export const {resetRecipes} = recipesSlice.actions;
 export default recipesSlice.reducer;

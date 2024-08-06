@@ -9,16 +9,13 @@ export const apiClient = axios.create({
 	},
 });
 
-// Add a request interceptor
 apiClient.interceptors.request.use(
 	config => {
-		// Append a random API key to every request
 		config.params = config.params || {};
 		config.params.apiKey = API_KEYS[Math.floor(Math.random() * API_KEYS.length)];
 		return config;
 	},
 	error => {
-		// Do something with the error
 		return Promise.reject(error);
 	}
 );

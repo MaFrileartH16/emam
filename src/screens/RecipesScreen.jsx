@@ -1,4 +1,3 @@
-// RecipesScreen.js
 import React, {useCallback, useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import {Card, IconButton, Searchbar} from 'react-native-paper';

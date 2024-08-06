@@ -3,9 +3,9 @@ import {ActivityIndicator, FlatList, Image, StyleSheet, Text, View} from 'react-
 import {Card, IconButton, Searchbar} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 import {useDebounce} from '@uidotdev/usehooks';
-import {resetMenus} from '../store/menusSlice'; // Ensure this path is correct
+import {resetMenus} from '../store/menusSlice';
 import {useNavigation} from '@react-navigation/native';
-import {getMenus} from '../api/menus/getMenus'; // Ensure this path is correct
+import {getMenus} from '../api/menus/getMenus';
 
 const EmptyState = () => (
 	<View style={styles.emptyStateContainer}>
@@ -27,7 +27,7 @@ export const MenusScreen = () => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const debouncedSearchQuery = useDebounce(searchQuery, 300);
 	const {menus, status, page, hasMore} = useSelector((state) => state.menus);
-	console.log(menus);
+	
 	useEffect(() => {
 		dispatch(resetMenus());
 		dispatch(getMenus({query: debouncedSearchQuery, page: 1}));

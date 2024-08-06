@@ -6,11 +6,11 @@ const menusSlice = createSlice({
 	name: 'menus',
 	initialState: {
 		menus: [],
-		menu: null, // For storing a single menu's information
+		menu: null,
 		status: 'idle',
 		page: 1,
 		hasMore: false,
-		error: null, // To store error messages
+		error: null,
 	},
 	reducers: {
 		resetMenus: (state) => {
@@ -18,13 +18,9 @@ const menusSlice = createSlice({
 			state.page = 1;
 			state.hasMore = false;
 		},
-		resetMenu: (state) => {
-			state.menu = null;
-		}
 	},
 	extraReducers: (builder) => {
 		builder
-			// Handling states for getMenus
 			.addCase(getMenus.pending, (state) => {
 				state.status = 'loading';
 				state.error = null;
@@ -39,7 +35,6 @@ const menusSlice = createSlice({
 				state.status = 'failed';
 				state.error = action.error.message;
 			})
-			// Handling states for getMenu
 			.addCase(getMenu.pending, (state) => {
 				state.status = 'loading';
 				state.error = null;
@@ -55,5 +50,5 @@ const menusSlice = createSlice({
 	},
 });
 
-export const {resetMenus, resetMenu} = menusSlice.actions;
+export const {resetMenus} = menusSlice.actions;
 export default menusSlice.reducer;

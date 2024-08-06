@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiClient} from "../apiClient";
 
-export const getRecipes = createAsyncThunk('recipes/getRecipes', async ({query = '', page}, {getState}) => {
+export const getRecipes = createAsyncThunk('recipes/getRecipes', async ({query = '', page},) => {
 	const response = await apiClient.get('/recipes/complexSearch', {
 		params: {
 			query,
@@ -11,6 +11,6 @@ export const getRecipes = createAsyncThunk('recipes/getRecipes', async ({query =
 	});
 	
 	const {results} = response.data;
-	const hasMore = results.length === 16; // Assuming 16 items per page
+	const hasMore = results.length === 16;
 	return {results, hasMore, page};
 });

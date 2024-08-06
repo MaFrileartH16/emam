@@ -1,13 +1,12 @@
 import React from 'react';
 import {BottomNavigation as BottomNavigationRNP, DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 
-// Custom theme with white bottom navigation
 const theme = {
 	...DefaultTheme,
 	colors: {
 		...DefaultTheme.colors,
-		surface: '#FFFFFF', // Background color of the bottom navigation
-		onSurface: '#000000', // Color of the icons and text
+		surface: '#FFFFFF',
+		onSurface: '#000000',
 	},
 };
 

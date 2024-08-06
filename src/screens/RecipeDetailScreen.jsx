@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Image, Linking, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {ActivityIndicator, Button, Card} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
-import {getRecipe} from '../api/recipes/getRecipe'; // Import the thunk
+import {getRecipe} from '../api/recipes/getRecipe';
 
 export const RecipeDetailScreen = ({route}) => {
 	const {recipeId} = route.params;
@@ -11,11 +11,9 @@ export const RecipeDetailScreen = ({route}) => {
 	const status = useSelector((state) => state.recipes.status);
 	
 	useEffect(() => {
-		// Fetch the recipe information when the component mounts
 		dispatch(getRecipe(recipeId));
 	}, [dispatch, recipeId]);
 	
-	// Show a loading indicator while fetching
 	if (status === 'loading') {
 		return (
 			<View style={styles.container}>
@@ -24,7 +22,6 @@ export const RecipeDetailScreen = ({route}) => {
 		);
 	}
 	
-	// Show an error message if there was a problem fetching the data
 	if (status === 'failed') {
 		return (
 			<View style={styles.container}>
@@ -33,7 +30,6 @@ export const RecipeDetailScreen = ({route}) => {
 		);
 	}
 	
-	// Show the recipe information once it's loaded
 	return (
 		<View style={styles.container}>
 			<ScrollView contentContainerStyle={styles.scrollContent}>
@@ -108,7 +104,7 @@ const styles = StyleSheet.create({
 	},
 	scrollContent: {
 		padding: 16,
-		paddingBottom: 80, // Extra space at the bottom for the source button
+		paddingBottom: 80,
 	},
 	card: {
 		marginBottom: 16,

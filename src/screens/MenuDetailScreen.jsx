@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {ActivityIndicator, Card} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
-import {getMenu} from "../api/menus/getMenu"; // Import the thunk
+import {getMenu} from "../api/menus/getMenu";
 
 export const MenuDetailScreen = ({route}) => {
 	const {menuId} = route.params;
@@ -11,11 +11,9 @@ export const MenuDetailScreen = ({route}) => {
 	const status = useSelector((state) => state.menus.status);
 	
 	useEffect(() => {
-		// Fetch the menu information when the component mounts
 		dispatch(getMenu(menuId));
 	}, [dispatch, menuId]);
 	
-	// Show a loading indicator while fetching
 	if (status === 'loading') {
 		return (
 			<View style={styles.container}>
@@ -24,7 +22,6 @@ export const MenuDetailScreen = ({route}) => {
 		);
 	}
 	
-	// Show an error message if there was a problem fetching the data
 	if (status === 'failed') {
 		return (
 			<View style={styles.container}>
@@ -33,7 +30,6 @@ export const MenuDetailScreen = ({route}) => {
 		);
 	}
 	
-	// Show the menu information once it's loaded
 	return (
 		<View style={styles.container}>
 			<ScrollView contentContainerStyle={styles.scrollContent}>
@@ -86,7 +82,7 @@ const styles = StyleSheet.create({
 	},
 	scrollContent: {
 		padding: 16,
-		paddingBottom: 80, // Extra space at the bottom for the source button
+		paddingBottom: 80,
 	},
 	card: {
 		marginBottom: 16,
